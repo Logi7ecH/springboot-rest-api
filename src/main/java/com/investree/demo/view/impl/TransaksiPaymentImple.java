@@ -35,6 +35,11 @@ public class TransaksiPaymentImple implements TransaksiService {
         Map map = new HashMap();
         try{
             Transaksi updateStatus = transaksiRepository.getByID(obj.getId());
+            if (updateStatus == null){
+                map.put("StatusCode", "404");
+                map.put("StatusMessage", "Data Tidak Tersedia");
+            }
+            updateStatus.setStatus(obj.getStatus());
             Transaksi doSave = transaksiRepository.save(updateStatus);
             map.put("data", doSave);
             map.put("code", "200");
