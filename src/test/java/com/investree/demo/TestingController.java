@@ -29,7 +29,7 @@ public class TestingController {
 
         HttpEntity<String> entity = new HttpEntity<String>(bodyTesting,headers);
         ResponseEntity<String> exchange = restTemplate.exchange
-                ("http://localhost:8080/api/v1/transaksi/", HttpMethod.POST, entity, String.class);
+                ("http://localhost:8080/v1/transaksi/", HttpMethod.POST, entity, String.class);
         assertEquals(HttpStatus.OK, exchange.getStatusCode());
         System.out.println("response =" + exchange.getBody());
     }
