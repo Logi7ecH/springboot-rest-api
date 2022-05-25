@@ -7,7 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.investree.demo.model.Transaksi;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.Slice;
 
 
 @Repository
@@ -16,5 +15,8 @@ public interface TransaksiRepository extends PagingAndSortingRepository<Transaks
     public Transaksi getByID(@Param("id") Long id);
 
     @Query("SELECT tf from Transaksi tf")
-    Page<Transaksi> getAllData(Pageable pageable);
+    Page<Transaksi> getList(Pageable pageable);
+
+    @Query("SELECT tf from Transaksi tf WHERE tf.status = :status")
+    Page <Transaksi> getByStatus(@Param("status") String status, Pageable pageable);
 }
